@@ -2,3 +2,5 @@
 *.tfstate
 *.state
 *.backup
+
+node_modules
