@@ -19,15 +19,14 @@ resource "google_compute_subnetwork" "subnetwork" {
 }
 
 
-//module "nat-gateway" {
-//  source = "../../modules/nat-gateway"
-//  network = "${google_compute_network.network.name}"
-//  subnetwork = "${google_compute_subnetwork.europe-west-1.name}"
-//  region = "europe-west1"
-//  tags = [
-//    "private"]
-//  machine_type = "f1-micro"
-//}
+module "nat-gateway" {
+  source = "../../modules/nat-gateway"
+  network = "${google_compute_network.network.name}"
+  subnetwork = "${google_compute_subnetwork.subnetwork.*.name[0]}"
+  region = "europe-west1"
+  tags = ["private"]
+  machine_type = "f1-micro"
+}
 
 // Rule to allow ssh
 resource "google_compute_firewall" "allow-ssh" {
