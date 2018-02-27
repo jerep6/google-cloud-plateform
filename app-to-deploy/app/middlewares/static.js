@@ -40,7 +40,6 @@ function serve (root, opts) {
     // response is already handled
     if (ctx.body != null || ctx.status !== 404) return // eslint-disable-line
 
-    console.log(')))))))))))))', ctx.params['0'])
     const file = typeof ctx.params === 'object' ? ctx.params['0'] || `/${opts.index}` : ctx.request.path;
 
     try {

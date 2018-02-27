@@ -1,11 +1,11 @@
 const Koa = require('koa');
 const koaBody = require('koa-body');
 const Router = require('koa-router');
-const KoaStatic = require('./app/middlewares/static');
-const RootRouter = new Router();
+const KoaStatic = require('./middlewares/static');
 const app = new Koa();
+const config = require('./config/config')
 
-const UploadController = require('./app/controllers/upload.controller');
+const UploadController = require('./controllers/upload.controller');
 
 app.use(koaBody({
   jsonLimit: '1kb'
@@ -15,6 +15,7 @@ app.use(koaBody({
 const uploadRouter = UploadController.registerRoute(new Router());
 const staticRouter = new Router().all('/*', KoaStatic('static', { maxage: 1000 * 3600 }));
 
+const RootRouter = new Router({"prefix": config.url_path});
 RootRouter.use('/static', staticRouter.routes(), staticRouter.allowedMethods());
 RootRouter.use('/upload', uploadRouter.routes(), uploadRouter.allowedMethods());
 

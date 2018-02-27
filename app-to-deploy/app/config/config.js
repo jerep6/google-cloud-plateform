@@ -1,3 +1,4 @@
 module.exports = {
-  img_directory : '/tmp' || process.env.IMG_DIRECTORY
+  img_directory : process.env.IMG_DIRECTORY || '/tmp',
+  url_path: process.env.URL_PATH || ''
 }
