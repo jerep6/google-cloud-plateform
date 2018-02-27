@@ -39,7 +39,7 @@ function download(url, dest) {
   return new Promise((resolve, reject) => {
     const file = fs.createWriteStream(dest);
 
-    var request = http.get(url, response => {
+    http.get(url, response => {
       response.pipe(file);
 
       file.on('finish', () => {
