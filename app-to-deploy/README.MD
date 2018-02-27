@@ -22,3 +22,18 @@ curl -XPOST -H "Content-Type: application/json" http://localhost:3000/api/images
     "name": "avion.png"
 }'
 ```
+
+
+# SQL
+La table est créée au démarrage de l'application
+**Création de la table**
+```sql
+CREATE TABLE IMAGES (
+	id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(256) NOT NULL,
+    size INT NOT NULL,
+    url VARCHAR(2048) NOT NULL,
+	PRIMARY KEY (id)
+)
+```
+

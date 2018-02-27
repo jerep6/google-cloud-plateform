@@ -1,8 +1,15 @@
-const repository = require('../repositories/memory.repository');
 const http = require('https');
 const path = require('path');
 const fs = require('fs');
 const config = require('../config/config');
+const repository = getRepository();
+
+function getRepository() {
+  switch (config.database_mode) {
+    case 'mysql': return require('../repositories/mysql.repository');
+    default: return require('../repositories/memory.repository');
+  }
+}
 
 function registerRoute(router) {
   router.post('/', uploadImage);
